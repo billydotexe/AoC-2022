@@ -454,4 +454,4 @@ $RECYCLE.BIN/
 !.vscode/extensions.json
 
 #Input files
-Input.txt
+Input*.txt
