@@ -5,9 +5,13 @@
 
     foreach(var line in input.Split("\r\n"))
     {
-        Elf elf1 = new(line.Split(",")[0]);
-        Elf elf2 = new(line.Split(",")[1]);
+        //divide the input
+        var elves = line.Split(",");
+        Elf elf1 = new(elves[0]);
+        Elf elf2 = new(elves[1]);
 
+        //check if the range of the 2 elves overlap somehow
+        //one elf range needs to be completely inside the other one
         if((elf1.start >= elf2.start && elf1.stop <= elf2.stop) 
             || (elf2.start >= elf1.start && elf2.stop <= elf1.stop))
         {
@@ -25,9 +29,12 @@ void Part2()
 
     foreach(var line in input.Split("\r\n"))
     {
-        Elf elf1 = new(line.Split(",")[0]);
-        Elf elf2 = new(line.Split(",")[1]);
+        var elves = line.Split(",");
+        Elf elf1 = new(elves[0]);
+        Elf elf2 = new(elves[1]);
 
+        //new logic for the overlap
+        //the ranges can partially overlap
         if(
             (elf1.start >= elf2.start && elf1.start <= elf2.stop)
             || (elf1.stop >= elf2.start && elf1.stop <= elf2.stop)

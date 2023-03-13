@@ -1,16 +1,20 @@
-﻿void Part1()
+﻿
+void Part1()
 {
     string input = File.ReadAllText("Input1.txt");
     int? maxCalories = null;
     int calories = 0;
 
+    //we have the whole file so let's iterate through every line
     foreach(var line in input.Split("\r\n"))
     {
+        //end of chunk, check and store
         if(line == "")
         {
             if (maxCalories is null || calories > maxCalories) maxCalories = calories;
             calories = 0;
         }
+        //still in the chunk
         else
         {
             calories += int.Parse(line);
@@ -27,8 +31,10 @@ void Part2()
     List<int> maxCalories = new();
     int calories = 0;
 
+    //we have the whole file so let's iterate through every line
     foreach (var line in input.Split("\r\n"))
     {
+        //end of chunk, check and store top 3 values
         if (line == "")
         {
             if (maxCalories.Count < 3) maxCalories.Add(calories);
@@ -41,6 +47,7 @@ void Part2()
             }
             calories = 0;
         }
+        //still in the chunk
         else
         {
             calories += int.Parse(line);

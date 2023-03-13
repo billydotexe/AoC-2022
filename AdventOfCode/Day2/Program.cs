@@ -3,6 +3,8 @@ Results.Add("X", "Lose");
 Results.Add("Y", "Draw");
 Results.Add("Z", "Win");
 
+//getting fancy trying some switch expression
+//one to get the score given the player and opponent move
 int getScore(Moves player, Moves opponent) => (player, opponent) switch
 {
     { player: Moves.Rock,       opponent: Moves.Scissors }  or
@@ -14,6 +16,7 @@ int getScore(Moves player, Moves opponent) => (player, opponent) switch
     _                                                       => 0
 };
 
+//and one to get the need move given the opponent move and the needed score
 int getMove(Moves opponent, Scores score) => (opponent, score) switch
 {
     { opponent: Moves.Rock,     score: Scores.Draw }    or
@@ -42,14 +45,14 @@ void Part1()
 
     int total = 0;
 
+    //pretty easy: iterate, get score, add to total as the problem says
     foreach (var game in input.Split("\r\n"))
     {
         Moves opponent = (Moves)Enum.Parse(typeof(Moves), values[game.Split(" ")[0]]);
         Moves me = (Moves)Enum.Parse(typeof(Moves), values[game.Split(" ")[1]]);
         int score = getScore(me, opponent);
 
-        total += (int)me;
-        if (score > 0) total += score;
+        total += (int)me + score;
     }
 
     File.WriteAllText("Output1.txt", total.ToString());
@@ -66,6 +69,7 @@ void Part2()
 
     int total = 0;
 
+    //that's as easy as part one, just get the move instead of the score
     foreach (var game in input.Split("\r\n"))
     {
         Moves opponent = (Moves)Enum.Parse(typeof(Moves), values[game.Split(" ")[0]]);
